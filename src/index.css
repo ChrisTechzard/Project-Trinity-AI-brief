@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-white font-sans text-slate-900 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: #bae6fd;
+    color: #0b1220;
+  }
+
+  :focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em];
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem];
+  }
+
+  .section-lead {
+    @apply mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-250;
+  }
+
+  .dark-card {
+    @apply rounded-2xl border border-white/10 bg-white/[0.035] p-6 transition duration-250;
+  }
+
+  .evidence-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.14em];
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .skip-link {
+    @apply sr-only fixed left-4 top-4 z-[110] rounded-lg bg-white px-4 py-3 text-sm font-semibold text-navy-900 shadow-panel focus:not-sr-only;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
