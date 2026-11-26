@@ -40,6 +40,9 @@ export function useSeo(config: SiteConfig): void {
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', description);
     setMeta('property', 'og:image', imageUrl);
+    if (siteUrl) {
+      setMeta('property', 'og:url', siteUrl);
+    }
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', title);
     setMeta('name', 'twitter:description', description);
