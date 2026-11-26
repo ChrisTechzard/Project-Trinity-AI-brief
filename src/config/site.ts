@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
     'An integrated AI-powered smart-city initiative bringing traffic intelligence, environmental monitoring and safety detection together through a central decision-support engine.',
   location: 'Ghana',
   stage: 'Functioning prototype',
-  siteUrl: 'https://ChrisTechzard.github.io/Project-Trinity-AI-brief/',
+  siteUrl: 'https://christechzard.github.io/Project-Trinity-AI-brief/',
   nav: [
     { label: 'Problem', href: '#problem' },
     { label: 'Technology', href: '#technology' },
