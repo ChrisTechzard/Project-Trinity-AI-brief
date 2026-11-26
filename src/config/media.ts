@@ -1,4 +1,9 @@
-import type { GalleryFilter, MediaAsset, VideoItem } from '@/types/content';
+import type {
+  GalleryFilter,
+  GalleryGroup,
+  MediaAsset,
+  VideoItem,
+} from '@/types/content';
 
 export const heroImage: MediaAsset = {
   id: 'hero-showcase',
@@ -172,6 +177,44 @@ export const galleryAssets: readonly MediaAsset[] = [
     category: 'team',
     width: 1600,
     height: 1200,
+  },
+];
+
+/** Each similarly named set is presented as a single explorable collection. */
+export const galleryGroups: readonly GalleryGroup[] = [
+  {
+    id: 'live',
+    title: 'Live calibration set',
+    description:
+      'Four calibration captures of the camera detection view alongside the live traffic dashboard.',
+    evidence: 'MEASURED',
+    coverId: 'calibration-02',
+    assetIds: ['calibration-01', 'calibration-02', 'calibration-03', 'calibration-04'],
+  },
+  {
+    id: 'simulated',
+    title: 'Simulated walkthrough set',
+    description:
+      'Six offline demonstration views: showcase, traffic detail, controller, safety, environment and evaluation.',
+    evidence: 'SIMULATED',
+    coverId: 'hero-showcase',
+    assetIds: [
+      'hero-showcase',
+      'demo-traffic-detail',
+      'demo-controller',
+      'demo-safety',
+      'demo-environment',
+      'demo-evaluation',
+    ],
+  },
+  {
+    id: 'team',
+    title: 'Team photograph set',
+    description:
+      'Four photographs of the student team at AI hackathon and innovation showcase events in Ghana.',
+    evidence: 'PROJECT SOURCE',
+    coverId: 'team-01',
+    assetIds: ['team-01', 'team-02', 'team-03', 'team-04'],
   },
 ];
 

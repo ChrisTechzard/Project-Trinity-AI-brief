@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { modules } from '@/config/content';
-import { galleryAssets, videos } from '@/config/media';
+import { galleryAssets, galleryGroups, videos } from '@/config/media';
 import { siteConfig } from '@/config/site';
 
 const publicDir = resolve(process.cwd(), 'public');
@@ -24,6 +24,15 @@ describe('content integrity', () => {
     }
     for (const module of modules) {
       expect(assetExists(module.image.src), `Missing module image: ${module.image.src}`).toBe(true);
+    }
+  });
+
+  it('groups every gallery capture exactly once', () => {
+    const groupedIds = galleryGroups.flatMap((group) => group.assetIds);
+    expect(new Set(groupedIds).size).toBe(groupedIds.length);
+    expect(groupedIds.sort()).toEqual(galleryAssets.map((asset) => asset.id).sort());
+    for (const group of galleryGroups) {
+      expect(group.assetIds).toContain(group.coverId);
     }
   });
 

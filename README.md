@@ -43,7 +43,7 @@ All editable content is centralised under `src/config/`:
 | --- | --- |
 | `src/config/site.ts` | Brand text, metadata, contact details, GitHub and portfolio links, deployed URL |
 | `src/config/content.ts` | Problems, modules, architecture notes, status, vision, collaboration copy |
-| `src/config/media.ts` | Gallery manifest, evidence labels and video sources |
+| `src/config/media.ts` | Grouped gallery collections, evidence labels and video sources |
 | `src/config/` types live in `src/types/content.ts` |
 
 ### Adding a YouTube video

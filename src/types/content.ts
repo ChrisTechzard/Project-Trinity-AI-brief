@@ -15,6 +15,17 @@ export interface GalleryFilter {
   label: string;
 }
 
+export type GalleryGroupId = 'live' | 'simulated' | 'team';
+
+export interface GalleryGroup {
+  id: GalleryGroupId;
+  title: string;
+  description: string;
+  evidence: EvidenceLabel;
+  coverId: string;
+  assetIds: readonly string[];
+}
+
 export interface MediaAsset {
   id: string;
   src: string;
