@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, renderHook, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
+import { useActiveSection } from '@/hooks/useActiveSection';
 import { GalleryCollections } from '@/components/sections/GalleryCollections';
 import { Header } from '@/components/layout/Header';
 import { Lightbox } from '@/components/ui/Lightbox';
@@ -8,6 +9,61 @@ import { ModeSwitch } from '@/components/ui/ModeSwitch';
 import { VideoEmbed } from '@/components/ui/VideoEmbed';
 import { galleryAssets, videos } from '@/config/media';
 import { ViewModeProvider } from '@/context/ViewModeContext';
+
+describe('useActiveSection', () => {
+  it('follows the section under the fixed header as the page scrolls', async () => {
+    document.body.innerHTML = `
+      <header></header>
+      <main id="main">
+        <section id="problem"></section>
+        <section id="technology"></section>
+        <section id="collaboration"></section>
+      </main>
+    `;
+    Object.defineProperty(document.documentElement, 'scrollHeight', {
+      configurable: true,
+      value: 5000,
+    });
+
+    const tops: Record<string, number> = {
+      problem: -200,
+      technology: 40,
+      collaboration: 600,
+    };
+    const rectSpy = vi
+      .spyOn(Element.prototype, 'getBoundingClientRect')
+      .mockImplementation(function (this: Element) {
+        const top = this.tagName === 'HEADER' ? 72 : (tops[this.id] ?? 0);
+        return {
+          top,
+          bottom: top + 100,
+          left: 0,
+          right: 0,
+          width: 0,
+          height: 100,
+          x: 0,
+          y: top,
+          toJSON: () => ({}),
+        } as DOMRect;
+      });
+
+    try {
+      const { result } = renderHook(() => useActiveSection(['problem', 'technology', 'collaboration']));
+      expect(result.current).toBe('technology');
+
+      tops.technology = -100;
+      tops.collaboration = 40;
+      act(() => {
+        window.dispatchEvent(new Event('scroll'));
+      });
+      await waitFor(() => expect(result.current).toBe('collaboration'));
+    } finally {
+      rectSpy.mockRestore();
+      Reflect.deleteProperty(document.documentElement, 'scrollHeight');
+      document.body.innerHTML = '';
+    }
+  });
+});
 
 describe('Header', () => {
   it('opens and closes the mobile navigation', async () => {
