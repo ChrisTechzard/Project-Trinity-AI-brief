@@ -54,11 +54,9 @@ describe('content integrity', () => {
     }
   });
 
-  it('keeps pending videos explicit instead of inventing a URL', () => {
+  it('lists only supplied playable recordings', () => {
+    expect(videos.length).toBeGreaterThan(0);
     for (const video of videos) {
-      if (video.kind === 'pending') {
-        expect(video.note.length).toBeGreaterThan(10);
-      }
       if (video.kind === 'youtube') {
         expect(video.url.length).toBeGreaterThan(0);
       }

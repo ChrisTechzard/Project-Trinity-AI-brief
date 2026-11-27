@@ -247,12 +247,4 @@ export const videos: readonly VideoItem[] = [
     src: 'media/calibration-video.mp4',
     poster: 'media/calibration-video-poster.webp',
   },
-  {
-    id: 'youtube-demonstration',
-    kind: 'pending',
-    title: 'Extended demonstration',
-    description:
-      'Space is reserved for a dedicated presentation or module walkthrough video when a sharing link is available.',
-    note: 'No YouTube URL supplied. Add one in src/config/media.ts to enable this player.',
-  },
 ];

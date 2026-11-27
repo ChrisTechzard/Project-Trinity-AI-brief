@@ -9,7 +9,7 @@ The site opens in a concise **Brief** view by default. The header switch opens t
 - The three urban challenges the prototype addresses.
 - The three monitoring modules and the Central AI Decision Engine.
 - Authentic project evidence: live camera calibration captures, clearly labelled simulated walkthroughs and team photographs.
-- Two project recordings and an explicit placeholder for a future unlisted YouTube link.
+- Two authentic project recordings: the team lead walkthrough and the camera calibration walkthrough.
 - Prototype status, vision and collaboration opportunities.
 
 No deployment, verified real-world impact, fake statistics, testimonials or partner logos are claimed.
@@ -48,9 +48,9 @@ All editable content is centralised under `src/config/`:
 | `src/config/media.ts` | Grouped gallery collections, evidence labels and video sources |
 | `src/config/` types live in `src/types/content.ts` |
 
-### Adding a YouTube video
+### Adding another video later
 
-Replace the pending entry in `src/config/media.ts` with:
+Add an entry to the `videos` array in `src/config/media.ts` only when a real video file or share link is available:
 
 ```ts
 {

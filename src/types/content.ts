@@ -65,12 +65,7 @@ export interface YoutubeVideo extends VideoBase {
   url: string;
 }
 
-export interface PendingVideo extends VideoBase {
-  kind: 'pending';
-  note: string;
-}
-
-export type VideoItem = LocalVideo | YoutubeVideo | PendingVideo;
+export type VideoItem = LocalVideo | YoutubeVideo;
 
 export interface Problem {
   id: string;

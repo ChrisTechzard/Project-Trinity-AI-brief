@@ -157,14 +157,4 @@ describe('VideoEmbed', () => {
     render(<VideoEmbed video={video} />);
     expect(screen.getByLabelText(video.title)).toBeInstanceOf(HTMLVideoElement);
   });
-
-  it('renders an explicit placeholder when no YouTube URL is configured', () => {
-    const pending = videos.find((item) => item.kind === 'pending');
-    expect(pending).toBeDefined();
-    if (!pending) {
-      return;
-    }
-    render(<VideoEmbed video={pending} />);
-    expect(screen.getByText('Awaiting video link')).toBeInTheDocument();
-  });
 });
