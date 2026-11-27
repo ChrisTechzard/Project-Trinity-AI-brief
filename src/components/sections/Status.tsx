@@ -19,7 +19,7 @@ const toneMap: Record<string, string> = {
 
 export function Status(): JSX.Element {
   return (
-    <section id="status" className="scroll-mt-20 bg-slate-50 py-20 sm:py-24 lg:py-28">
+    <section id="status" className="bg-slate-50 py-20 sm:py-24 lg:py-28">
       <div className="container-page">
         <Reveal>
           <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">

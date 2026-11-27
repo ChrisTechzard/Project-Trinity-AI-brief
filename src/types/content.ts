@@ -1,3 +1,5 @@
+export type ViewMode = 'brief' | 'detailed';
+
 export type EvidenceLabel = 'MEASURED' | 'SIMULATED' | 'PLANNED' | 'PROJECT SOURCE';
 
 export type GalleryCategory =

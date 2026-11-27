@@ -5,7 +5,7 @@ import { Reveal } from '@/components/ui/Reveal';
 
 export function Vision(): JSX.Element {
   return (
-    <section id="vision" className="scroll-mt-20 relative overflow-hidden bg-accent-deep py-20 text-white sm:py-24 lg:py-28">
+    <section id="vision" className="relative overflow-hidden bg-accent-deep py-20 text-white sm:py-24 lg:py-28">
       <div className="pointer-events-none absolute inset-0 bg-grid-fine bg-grid opacity-25" aria-hidden="true" />
       <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl" aria-hidden="true" />
       <div className="container-page relative">

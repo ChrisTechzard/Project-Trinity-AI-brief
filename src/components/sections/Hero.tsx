@@ -2,12 +2,14 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Cpu, PlayCircle, Radio, ShieldCheck } from 'lucide-react';
 import { heroImage } from '@/config/media';
 import { siteConfig } from '@/config/site';
+import { useSectionScroll } from '@/hooks/useSectionScroll';
 import { ActionLink } from '@/components/ui/ActionLink';
 import { Badge } from '@/components/ui/Badge';
 import { EvidenceTag } from '@/components/ui/EvidenceTag';
 
 export function Hero(): JSX.Element {
   const reducedMotion = useReducedMotion();
+  const scrollToSection = useSectionScroll();
   const entrance = (delay: number) => ({
     initial: reducedMotion ? false : { opacity: 0, y: 18 },
     animate: { opacity: 1, y: 0 },
@@ -50,10 +52,19 @@ export function Hero(): JSX.Element {
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ActionLink href="#technology" icon={ArrowRight}>
+            <ActionLink
+              href="#technology"
+              icon={ArrowRight}
+              onClick={(event) => scrollToSection(event, '#technology')}
+            >
               Explore the Project
             </ActionLink>
-            <ActionLink href="#demonstrations" variant="secondary" icon={PlayCircle}>
+            <ActionLink
+              href="#demonstrations"
+              variant="secondary"
+              icon={PlayCircle}
+              onClick={(event) => scrollToSection(event, '#demonstrations')}
+            >
               Watch Demonstration
             </ActionLink>
           </div>

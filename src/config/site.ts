@@ -1,8 +1,8 @@
 import type { SiteConfig } from '@/types/content';
 
 /**
- * All external details live here. Set `siteUrl` to the deployed Vercel URL so
- * social crawlers can resolve the Open Graph image as an absolute URL.
+ * All external details live here. Keep `siteUrl` aligned with the deployed
+ * GitHub Pages URL so social crawlers can resolve the Open Graph image.
  */
 export const siteConfig: SiteConfig = {
   name: 'PROJECT TRINITY AI',

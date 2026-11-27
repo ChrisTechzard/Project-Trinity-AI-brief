@@ -3,8 +3,10 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { useActiveSection } from '@/hooks/useActiveSection';
+import { useSectionScroll } from '@/hooks/useSectionScroll';
 import { ActionLink } from '@/components/ui/ActionLink';
 import { Logo } from '@/components/ui/Logo';
+import { ModeSwitch } from '@/components/ui/ModeSwitch';
 
 export function Header(): JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,6 +14,7 @@ export function Header(): JSX.Element {
   const reducedMotion = useReducedMotion();
   const sectionIds = useMemo(() => siteConfig.nav.map((item) => item.href.slice(1)), []);
   const activeSection = useActiveSection(sectionIds);
+  const scrollToSection = useSectionScroll();
 
   useEffect(() => {
     const onScroll = (): void => setScrolled(window.scrollY > 12);
@@ -42,7 +45,12 @@ export function Header(): JSX.Element {
       }`}
     >
       <div className="container-page flex h-16 items-center justify-between gap-4 lg:h-[72px]">
-        <a href="#home" aria-label="Project Trinity AI, back to top" className="shrink-0 cursor-pointer">
+        <a
+          href="#home"
+          aria-label="Project Trinity AI, back to top"
+          onClick={(event) => scrollToSection(event, '#home')}
+          className="shrink-0 cursor-pointer"
+        >
           <Logo tone="light" />
         </a>
 
@@ -53,6 +61,7 @@ export function Header(): JSX.Element {
               <a
                 key={item.href}
                 href={item.href}
+                onClick={(event) => scrollToSection(event, item.href)}
                 className={`relative rounded-md px-3 py-2 text-[13px] font-medium transition duration-250 ${
                   isActive ? 'text-white' : 'text-slate-300 hover:text-white'
                 }`}
@@ -67,8 +76,14 @@ export function Header(): JSX.Element {
           })}
         </nav>
 
-        <div className="hidden lg:block">
-          <ActionLink href="#collaboration" variant="primary" className="px-4 py-2 text-[13px]">
+        <div className="hidden items-center gap-3 lg:flex">
+          <ModeSwitch />
+          <ActionLink
+            href="#collaboration"
+            variant="primary"
+            className="px-4 py-2 text-[13px]"
+            onClick={(event) => scrollToSection(event, '#collaboration')}
+          >
             Collaborate
           </ActionLink>
         </div>
@@ -97,11 +112,17 @@ export function Header(): JSX.Element {
             className="overflow-hidden border-t border-white/10 bg-navy-950/95 lg:hidden"
           >
             <div className="container-page flex flex-col py-4">
+              <div className="mb-3">
+                <ModeSwitch compact />
+              </div>
               {siteConfig.nav.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(event) => {
+                    scrollToSection(event, item.href);
+                    setMenuOpen(false);
+                  }}
                   className="min-h-11 border-b border-white/5 py-3 text-sm font-medium text-slate-200 transition hover:text-accent-bright"
                 >
                   {item.label}
@@ -111,7 +132,10 @@ export function Header(): JSX.Element {
                 href="#collaboration"
                 variant="primary"
                 className="mt-4 w-full"
-                onClick={() => setMenuOpen(false)}
+                onClick={(event) => {
+                  scrollToSection(event, '#collaboration');
+                  setMenuOpen(false);
+                }}
               >
                 Collaborate
               </ActionLink>

@@ -2,6 +2,8 @@
 
 Premium static website for **PROJECT TRINITY AI**, a student-led AI smart-city prototype from Ghana. Built with React, Vite, TypeScript, Tailwind CSS, Framer Motion and Lucide React.
 
+The site opens in a concise **Brief** view by default. The header switch opens the **Detailed** view, which can also be linked directly with `?view=detailed`.
+
 ## What this site presents
 
 - The three urban challenges the prototype addresses.

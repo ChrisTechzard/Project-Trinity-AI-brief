@@ -12,7 +12,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function Problem(): JSX.Element {
   return (
-    <section id="problem" className="scroll-mt-20 bg-slate-50 py-20 sm:py-24 lg:py-28">
+    <section id="problem" className="bg-slate-50 py-20 sm:py-24 lg:py-28">
       <div className="container-page">
         <Reveal>
           <SectionHeading

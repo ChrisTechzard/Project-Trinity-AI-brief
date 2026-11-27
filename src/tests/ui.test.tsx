@@ -1,15 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
+import { GalleryCollections } from '@/components/sections/GalleryCollections';
 import { Header } from '@/components/layout/Header';
 import { Lightbox } from '@/components/ui/Lightbox';
+import { ModeSwitch } from '@/components/ui/ModeSwitch';
 import { VideoEmbed } from '@/components/ui/VideoEmbed';
 import { galleryAssets, videos } from '@/config/media';
+import { ViewModeProvider } from '@/context/ViewModeContext';
 
 describe('Header', () => {
   it('opens and closes the mobile navigation', async () => {
     const user = userEvent.setup();
-    render(<Header />);
+    render(
+      <ViewModeProvider>
+        <Header />
+      </ViewModeProvider>,
+    );
 
     const menuButton = screen.getByRole('button', { name: 'Open navigation menu' });
     expect(menuButton).toHaveAttribute('aria-expanded', 'false');
@@ -52,6 +59,35 @@ describe('Lightbox', () => {
     expect(onIndexChange).toHaveBeenCalledWith(1);
     await user.click(screen.getByRole('button', { name: 'Close image viewer' }));
     expect(onClose).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('ModeSwitch', () => {
+  it('switches between brief and detailed views', async () => {
+    const user = userEvent.setup();
+    render(
+      <ViewModeProvider>
+        <ModeSwitch />
+      </ViewModeProvider>,
+    );
+
+    expect(screen.getByRole('button', { name: 'Brief' })).toHaveAttribute('aria-pressed', 'true');
+    await user.click(screen.getByRole('button', { name: 'Detailed' }));
+    expect(screen.getByRole('button', { name: 'Detailed' })).toHaveAttribute('aria-pressed', 'true');
+    expect(window.location.search).toBe('?view=detailed');
+    await user.click(screen.getByRole('button', { name: 'Brief' }));
+    expect(window.location.search).toBe('');
+  });
+});
+
+describe('GalleryCollections', () => {
+  it('opens the whole collection from any tap on the group card', async () => {
+    const user = userEvent.setup();
+    render(<GalleryCollections />);
+
+    await user.click(screen.getByRole('button', { name: 'Open Live calibration set gallery' }));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('1 / 4')).toBeInTheDocument();
   });
 });
 

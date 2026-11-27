@@ -7,7 +7,7 @@ import { VideoEmbed } from '@/components/ui/VideoEmbed';
 
 export function Demonstrations(): JSX.Element {
   return (
-    <section id="demonstrations" className="scroll-mt-20 border-t border-white/5 bg-navy-950 py-20 text-white sm:py-24 lg:py-28">
+    <section id="demonstrations" className="border-t border-white/5 bg-navy-950 py-20 text-white sm:py-24 lg:py-28">
       <div className="container-page">
         <Reveal>
           <SectionHeading

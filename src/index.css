@@ -13,6 +13,11 @@
     text-rendering: optimizeLegibility;
   }
 
+  a,
+  button {
+    touch-action: manipulation;
+  }
+
   ::selection {
     background: #bae6fd;
     color: #0b1220;
