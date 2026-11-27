@@ -11,7 +11,7 @@ export function VideoEmbed({ video }: VideoEmbedProps): JSX.Element {
   if (video.kind === 'local') {
     return (
       <div className="overflow-hidden rounded-xl border border-white/10 bg-navy-950 shadow-panel">
-        <div className="flex min-h-[280px] items-center justify-center bg-black p-3 sm:min-h-[420px] sm:p-4">
+        <div className="flex aspect-[4/5] items-center justify-center bg-black sm:aspect-video">
           <video
             src={video.src}
             poster={video.poster}
@@ -19,7 +19,7 @@ export function VideoEmbed({ video }: VideoEmbedProps): JSX.Element {
             playsInline
             preload="metadata"
             aria-label={video.title}
-            className="max-h-[78vh] w-auto max-w-full rounded-lg object-contain shadow-panel"
+            className="h-full w-full object-contain"
           />
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-5 py-4">
